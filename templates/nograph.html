@@ -1,0 +1,115 @@
+{% extends 'inbase.html' %}
+
+{% block head %}
+    <title>Graph Page</title>
+    <script>
+
+
+        function myFunction() {
+            document.getElementById("myDropdown").classList.toggle("show");
+        }
+
+        // Close the dropdown menu if the user clicks outside of it
+        window.onclick = function (event) {
+            if (!event.target.matches('.dropbtn')) {
+                var dropdowns = document.getElementsByClassName("dropdown-content");
+                var i;
+                for (i = 0; i < dropdowns.length; i++) {
+                    var openDropdown = dropdowns[i];
+                    if (openDropdown.classList.contains('show')) {
+                        openDropdown.classList.remove('show');
+                    }
+                }
+            }
+        }
+
+    </script>
+{% endblock %}
+
+{% block body %}
+
+<div class="sign_main">
+    <div class="sign_logo">
+        <img  src="{{user_image}}" width="100" >
+
+        <br>
+        <br>
+        <br>
+        <div class="setting">
+            <div class="img_setting">
+                <img src="{{settings_image}}" width="15px"/>
+            </div>
+            <div class="link_setting">
+                <!--   <a href="#" >Setting</a> -->
+                <div class="dropdown">
+                    <button onclick="myFunction()" class="dropbtn" onmouseover="GFG_Fun()">Settings</button>
+                    <div id="myDropdown" class="dropdown-content">
+                        <div class="menu">
+                            <img src="{{ url_for('static',filename='images/update_info_ico.png')}}" width="30px"/>
+                            <a href="/updateinfo"  onmouseover="GFG_Fun()">Update Your info</a>
+                        </div>
+                        <div class="clear">
+                        </div>
+                        <div class="menu">
+                            <img src="{{ url_for('static',filename='images/microphone.png')}}" width="30px" />
+                            <a onclick="checkMicPermissions()" onmouseover="GFG_Fun()">Microphone Access</a>
+                        </div>
+                        
+                        <div class="clear">
+                        </div>
+                        <div class="menu">
+                            <img src="{{ url_for('static',filename='images/synonyms_icon.png')}}" width="30px"/>
+                            <a href="/synonyms" onmouseover="GFG_Fun()">Synonyms</a>
+                        </div>
+                        <div class="clear">
+                        </div>
+                        <div class="menu">
+                            <img src="{{ url_for('static',filename='images/font_size.png')}}" width="30px"/>
+                            <a href="/font_size" onmouseover="GFG_Fun()">Font-Size</a>
+                        </div>
+                         <div class="clear">
+                        </div>
+
+
+                        <div class="menu">
+                            <img src="{{ url_for('static',filename='images/video_icon.png')}}" width="30px"/>
+                            <a href="/display_walkthrough" onmouseover="GFG_Fun()">Walkthrough Video</a>
+                        </div>
+                        <div class="clear">
+                        </div>
+                        <div class="menu">
+                            <img src="{{ url_for('static',filename='images/over_al_performancel.png')}}" width="30px"/>
+                            <a href="{{ url_for('plotgraph') }}" onmouseover="GFG_Fun()">Overall performance</a>
+                        </div>
+                        <div class="clear">
+                        </div>
+
+                        <div class="menu">
+                            <img src="{{ url_for('static',filename='images/developer_contact.png')}}" width="30px"/>
+                            <a href="/developer_contact" onmouseover="GFG_Fun()">Developer Contact</a>
+                        </div>
+                        <div class="clear">
+                        </div>
+                        <div class="menu">
+                            <img src="{{ url_for('static',filename='images/sign_out_ico.png')}}" width="30px"/>
+                            <a href="/signout" onmouseover="GFG_Fun()">Logout</a>
+                        </div>
+                        <div class="clear">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="clear"></div>
+        </div>
+    </div>
+
+    <div class="pers_info">
+        <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+ <center> <h1 onmouseover="GFG_Fun()">Insufficient DATA TO MAKE GRAPH</h1></center>
+
+         </div>
+    </div>
+
+
+</div>
+{% endblock %}

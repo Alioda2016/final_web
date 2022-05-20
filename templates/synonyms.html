@@ -1,0 +1,166 @@
+{% extends 'inbase.html' %}
+
+{% block head %}
+    <title>Task Master</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles/contact.css') }}">
+    <script>
+
+
+        function myFunction() {
+            document.getElementById("myDropdown").classList.toggle("show");
+        }
+
+        // Close the dropdown menu if the user clicks outside of it
+        window.onclick = function (event) {
+            if (!event.target.matches('.dropbtn')) {
+                var dropdowns = document.getElementsByClassName("dropdown-content");
+                var i;
+                for (i = 0; i < dropdowns.length; i++) {
+                    var openDropdown = dropdowns[i];
+                    if (openDropdown.classList.contains('show')) {
+                        openDropdown.classList.remove('show');
+                    }
+                }
+            }
+        }
+
+    </script>
+{% endblock %}
+
+{% block body %}
+
+    <!-- oooooooooooooooooooooooooooooooooooooooooooooooooo -->
+
+<div class="sign_main">
+    <div class="sign_logo">
+        <img src="{{user_image}}" width="100">
+
+        <br>
+        <br>
+        <br>
+        <div class="setting">
+            <div class="img_setting">
+                <img src="{{settings_image}}" width="15px"/>
+            </div>
+            <div class="link_setting">
+                <!--   <a href="#" >Setting</a> -->
+                <div class="dropdown">
+                    <button onclick="myFunction()" class="dropbtn" onmouseover="GFG_Fun()">Settings</button>
+                    <div id="myDropdown" class="dropdown-content">
+                        <div class="menu">
+                            <img src="{{ url_for('static',filename='images/update_info_ico.png')}}" width="30px"/>
+                            <a href="/updateinfo"  onmouseover="GFG_Fun()">Update Your info</a>
+                        </div>
+                        <div class="clear">
+                        </div>
+                        <div class="menu">
+                            <img src="{{ url_for('static',filename='images/microphone.png')}}" width="30px" />
+                            <a onclick="checkMicPermissions()" onmouseover="GFG_Fun()">Microphone Access</a>
+                        </div>
+                        
+                        <div class="clear">
+                        </div>
+                        <div class="menu">
+                            <img src="{{ url_for('static',filename='images/synonyms_icon.png')}}" width="30px"/>
+                            <a href="/synonyms" onmouseover="GFG_Fun()">Synonyms</a>
+                        </div>
+                        <div class="clear">
+                        </div>
+                        <div class="menu">
+                            <img src="{{ url_for('static',filename='images/font_size.png')}}" width="30px"/>
+                            <a href="/font_size" onmouseover="GFG_Fun()">Font-Size</a>
+                        </div>
+                         <div class="clear">
+                        </div>
+
+
+                        <div class="menu">
+                            <img src="{{ url_for('static',filename='images/video_icon.png')}}" width="30px"/>
+                            <a href="/display_walkthrough" onmouseover="GFG_Fun()">Walkthrough Video</a>
+                        </div>
+                        <div class="clear">
+                        </div>
+                        <div class="menu">
+                            <img src="{{ url_for('static',filename='images/over_al_performancel.png')}}" width="30px"/>
+                            <a href="{{ url_for('plotgraph') }}" onmouseover="GFG_Fun()">Overall performance</a>
+                        </div>
+                        <div class="clear">
+                        </div>
+
+                        <div class="menu">
+                            <img src="{{ url_for('static',filename='images/developer_contact.png')}}" width="30px"/>
+                            <a href="/developer_contact" onmouseover="GFG_Fun()">Developer Contact</a>
+                        </div>
+                        <div class="clear">
+                        </div>
+                        <div class="menu">
+                            <img src="{{ url_for('static',filename='images/sign_out_ico.png')}}" width="30px"/>
+                            <a href="/signout" onmouseover="GFG_Fun()">Logout</a>
+                        </div>
+                        <div class="clear">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="clear"></div>
+        </div>
+    </div>
+
+    <div class="pers_info">
+
+        <style>
+            .container {
+                padding: 10px;
+                text-align: left;
+            }
+
+            input[type=text] {
+
+                padding: 12px 20px;
+                margin: 8px 0;
+                box-sizing: border-box;
+            }
+
+            .button {
+                background-color: #937EA6;
+                border: none;
+                color: white;
+                padding: 15px 32px;
+                text-align: center;
+                text-decoration: none;
+                display: inline-block;
+                font-size: 16px;
+                border-radius: 2px;
+            }
+
+            /* Unordered list */
+            ul {
+                list-style-type: '🟪 ';
+                text-align: left;
+            }
+        </style>
+        <div class="pers_info">
+            <div class="container">
+
+                <div class="">
+                    <form method="post" style="align-items: left;">
+
+
+                        <input type="text" name="my_text" required placeholder="Enter Word" value="{{ my_text }}"/>
+                        <button type="submit" class="button" onmouseover="GFG_Fun()">Submit</button>
+                        {% if(return_value) %}
+
+                            <h3 onmouseover="GFG_Fun()">Synonyms of the word [{{ my_text.capitalize() }}]</h3>
+                            <ul>
+
+                                {% for Word in return_value %}
+                                    <li onmouseover="GFG_Fun()"> {{ Word.replace('_', ' ').capitalize() }}</li>
+                                {% endfor %}
+                            </ul>
+                        {% endif %}
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

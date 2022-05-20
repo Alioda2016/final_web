@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles/style.css') }}">
+    {% if session['font_size'] %}
+    <style>
+        h1, label, input, p, h2,h3,a, button{
+        font-size:{{session['font_size']}}px;
+        }
+
+    </style>
+    {% endif %}
+    {% block head %}{% endblock %}
+</head>
+<body>
+<div class="header">
+        <a href="/" class="logo">Task Master</a>
+        <div class="header-right">
+        <a href="/main_page">Main Page</a>
+        <a href="/signout">Logout</a>
+        </div>
+</div>
+
+<div class="success-message">
+    {% with messages = get_flashed_messages() %}
+    {% if messages %}
+    <ul class=flashes>
+        {% for message in messages %}
+        <li>{{ message }}</li>
+        {% endfor %}
+    </ul>
+    {% endif %}
+    {% endwith %}
+</div>
+{% block body %}
+    <div class="sign_main">
+        <div class="sign_logo">
+        <img src="{{user_image}}" width="100">
+
+        <br>
+        <br>
+        <br>
+        <div class="setting">
+            <div class="img_setting">
+                <img src="{{settings_image}}" width="15px"/>
+            </div>
+            <div class="link_setting">
+                <!--   <a href="#" >Setting</a> -->
+                <div class="dropdown">
+                    <button onclick="myFunction()" class="dropbtn">Settings</button>
+                    <div id="myDropdown" class="dropdown-content">
+                        <div class="menu">
+                            <img src="{{ url_for('static',filename='images/update_info_ico.png')}}" width="30px"/>
+                            <a href="/updateinfo">Update Your info</a>
+                        </div>
+                        <div class="clear">
+                        </div>
+                        <div class="menu">
+                            <img src="{{ url_for('static',filename='images/microphone.png')}}" width="30px" />
+                            <a onclick="checkMicPermissions()" href="#">Microphone Access</a>
+                        </div>
+                        <div class="clear">
+                        </div>
+                        <div class="menu">
+                            <img src="{{ url_for('static',filename='images/auto_reader.png')}}" width="30px"/>
+                            <a href="#">Auto Reader</a>
+                            <div>
+                                <label class="switch">
+                                    <input type="checkbox">
+                                    <span class="slider round"></span>
+                                </label>
+                            </div>
+                        </div>
+                        <div class="clear">
+                        </div>
+                        <div class="menu">
+                            <img src="{{ url_for('static',filename='images/synonyms_icon.png')}}" width="30px"/>
+                            <a href="/synonyms">Synonyms</a>
+                        </div>
+                        <div class="clear">
+                        </div>
+                        <div class="menu">
+                            <img src="{{ url_for('static',filename='images/font_size.png')}}" width="30px"/>
+                            <a href="/font_size">Font-Size</a>
+                        </div>
+                        <div class="clear">
+                        </div>
+
+                        <div class="clear">
+                        </div>
+                        <div class="menu">
+                            <img src="{{ url_for('static',filename='images/over_al_performancel.png')}}" width="30px"/>
+                            <a href="{{ url_for('plotgraph') }}">Overall performance</a>
+                        </div>
+                        <div class="clear">
+                        </div>
+
+                        <div class="menu">
+                            <img src="{{ url_for('static',filename='images/developer_contact.png')}}" width="30px"/>
+                            <a href="/developer_contact">Developer Contact</a>
+                        </div>
+                        <div class="clear">
+                        </div>
+                        <div class="menu">
+                            <img src="{{ url_for('static',filename='images/sign_out_ico.png')}}" width="30px"/>
+                            <a href="/signout">sign Out</a>
+                        </div>
+                        <div class="clear">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="clear"></div>
+        </div>
+    </div>
+        {% block content %}
+        {% endblock %}
+
+</div>
+{% endblock %}
+</body>
+</html>

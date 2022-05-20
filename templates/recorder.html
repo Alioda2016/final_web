@@ -1,0 +1,134 @@
+{% extends 'inbase.html' %}
+
+{% block head %}
+    <title>Record Before</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles/record.css') }}">
+    <script>
+
+
+        function myFunction() {
+            document.getElementById("myDropdown").classList.toggle("show");
+        }
+
+        // Close the dropdown menu if the user clicks outside of it
+        window.onclick = function (event) {
+            if (!event.target.matches('.dropbtn')) {
+                var dropdowns = document.getElementsByClassName("dropdown-content");
+                var i;
+                for (i = 0; i < dropdowns.length; i++) {
+                    var openDropdown = dropdowns[i];
+                    if (openDropdown.classList.contains('show')) {
+                        openDropdown.classList.remove('show');
+                    }
+                }
+            }
+        }
+    </script>
+{% endblock %}
+
+{% block body %}
+<div class="sign_main">
+    <div class="sign_logo">
+        <img src="{{user_image}}" width="100">
+
+        <br>
+        <br>
+        <br>
+        <div class="setting">
+            <div class="img_setting">
+                <img src="{{settings_image}}" width="15px"/>
+            </div>
+            <div class="link_setting">
+                <!--   <a href="#" >Setting</a> -->
+                <div class="dropdown">
+                    <button onclick="myFunction()" class="dropbtn" onmouseover="GFG_Fun()">Settings</button>
+                    <div id="myDropdown" class="dropdown-content">
+                        <div class="menu">
+                            <img src="{{ url_for('static',filename='images/update_info_ico.png')}}" width="30px"/>
+                            <a href="/updateinfo"  onmouseover="GFG_Fun()">Update Your info</a>
+                        </div>
+                        <div class="clear">
+                        </div>
+                        <div class="menu">
+                            <img src="{{ url_for('static',filename='images/microphone.png')}}" width="30px" />
+                            <a onclick="checkMicPermissions()" onmouseover="GFG_Fun()">Microphone Access</a>
+                        </div>
+                        
+                        <div class="clear">
+                        </div>
+                        <div class="menu">
+                            <img src="{{ url_for('static',filename='images/synonyms_icon.png')}}" width="30px"/>
+                            <a href="/synonyms" onmouseover="GFG_Fun()">Synonyms</a>
+                        </div>
+                        <div class="clear">
+                        </div>
+                        <div class="menu">
+                            <img src="{{ url_for('static',filename='images/font_size.png')}}" width="30px"/>
+                            <a href="/font_size" onmouseover="GFG_Fun()">Font-Size</a>
+                        </div>
+                         <div class="clear">
+                        </div>
+
+
+                        <div class="menu">
+                            <img src="{{ url_for('static',filename='images/video_icon.png')}}" width="30px"/>
+                            <a href="/display_walkthrough" onmouseover="GFG_Fun()">Walkthrough Video</a>
+                        </div>
+                        <div class="clear">
+                        </div>
+                        <div class="menu">
+                            <img src="{{ url_for('static',filename='images/over_al_performancel.png')}}" width="30px"/>
+                            <a href="{{ url_for('plotgraph') }}" onmouseover="GFG_Fun()">Overall Performance</a>
+                        </div>
+                        <div class="clear">
+                        </div>
+
+                        <div class="menu">
+                            <img src="{{ url_for('static',filename='images/developer_contact.png')}}" width="30px"/>
+                            <a href="/developer_contact" onmouseover="GFG_Fun()">Developer Contact</a>
+                        </div>
+                        <div class="clear">
+                        </div>
+                        <div class="menu">
+                            <img src="{{ url_for('static',filename='images/sign_out_ico.png')}}" width="30px"/>
+                            <a href="/signout" onmouseover="GFG_Fun()">Logout</a>
+                        </div>
+                        <div class="clear">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="clear"></div>
+        </div>
+    </div>
+
+    <div class="pers_info">
+
+            <div class="presentaion_form">
+                <title>Recorder</title>
+                <meta name="viewport" content="width=device-width, initial-scale=1.0">
+                </head>
+                <body>
+                <center><h1 style="margin: 15px; font-size: larger">Recorder</h1></center>
+                <embed src="static/pdfs/q.pdf" width="800px" height="600px"/>
+                <video class="gif" width="580px" height="600px" controls autoplay loop>
+                    <source src="static/gifs/{{ num }}.mp4" type="video/mp4">
+                </video>
+                <div id="controls">
+                    <button id="recordButton" onmouseover="GFG_Fun()">Record</button>
+                    <button id="pauseButton" onmouseover="GFG_Fun()" disabled>Pause</button>
+                    <button id="stopButton" onmouseover="GFG_Fun()" disabled>Stop</button>
+                </div>
+                <div id="formats"></div>
+                <p><strong>Recordings:</strong></p>
+                <ol id="recordingsList"></ol>
+                <script src="https://cdn.rawgit.com/mattdiamond/Recorderjs/08e7abd9/dist/recorder.js"></script>
+                <body onmouseover="GFG_Fun()">To analyse current recording click upload then press Enter</body>
+                <a href="{{ url_for('tomodel') }}" onmouseover="GFG_Fun()">NEXT</a>
+
+                </body>
+                </body>
+            </div>
+        </div>
+    </div>
+{% endblock %}

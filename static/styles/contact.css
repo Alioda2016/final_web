@@ -1,0 +1,25 @@
+.setting{
+    width:160px;
+    }
+
+.setting a{
+    text-decoration: none;
+    color: black;
+}
+
+.setting button{
+    color: white;
+}
+
+.setting:hover, .setting a:hover{
+    background:#696969;
+    color:white;
+
+}
+
+.setting .img_setting{
+}
+
+p {
+    text-align: center;
+}

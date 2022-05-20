@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+
+{% block head %}
+<title>Task Master</title>
+<link rel="stylesheet" href="{{ url_for('static', filename='styles/home.css') }}">
+{% endblock %}
+
+{% block body %}
+
+    <div class="header">
+        <a href="/" class="logo" onmouseover="GFG_Fun()">Task Master</a>
+        <div class="header-right">
+        <a class="active" href="/" onmouseover="GFG_Fun()">Home</a>
+        <a href="/signin" onmouseover="GFG_Fun()">Login</a>
+        <a href="/signup" onmouseover="GFG_Fun()">Register</a>
+        <a onmouseover="GFG_Fun()">Auto Reader</a>
+        <label class="switch">
+            <input type="checkbox" id="auto">
+            <span class="slider round"></span>
+        </label>
+        </div>
+    </div>
+<!-- oooooooooooooooooooooooooooooooooooooooooooooooooo -->
+    <div class="welcom">
+        <center><img  src="{{user_image}}" width="500" ></center>
+    <center> <h1 onmouseover="GFG_Fun()">Welcome</h1></center>
+
+        <center><a href="/home_page" onmouseover="GFG_Fun()">Let's start</a></center>
+    </div>
+{% endblock %}

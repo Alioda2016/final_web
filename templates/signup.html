@@ -1,0 +1,77 @@
+{% extends 'base.html' %}
+
+{% block head %}
+<title>Task Master</title>
+<link rel="stylesheet" href="{{ url_for('static', filename='styles/signup.css') }}">
+{% endblock %}
+
+{% block body %}
+
+<div class="header">
+    <a href="/" class="logo" onmouseover="GFG_Fun()">Task Master</a>
+    <div class="header-right">
+        <a href="/" onmouseover="GFG_Fun()">Home</a>
+        <a class="active" href="/signin" onmouseover="GFG_Fun()">Login</a>
+        <a href="/signup" onmouseover="GFG_Fun()">Register</a>
+        <a onmouseover="GFG_Fun()">Auto Reader</a>
+        <label class="switch">
+            <input type="checkbox" id="auto">
+            <span class="slider round"></span>
+        </label>
+    </div>
+</div>
+<!-- oooooooooooooooooooooooooooooooooooooooooooooooooo -->
+<div class="sign_main">
+    <div class="sign_logo">
+        <img src="{{user_image}}" width="100">
+    </div>
+
+    <div class="pers_info">
+        <center><img src="{{user_image}}"></center>
+        <div class="signup_form">
+            {% if error %}
+            <p onmouseover="GFG_Fun()"><strong>Error</strong>: {{error}}</p>
+            {% endif %}
+            <form action="{{url_for('insert_signup') }}" method="post">
+
+                <table cellspacing="0" cellpadding="0">
+                    <tr>
+
+                        <td colspan="1"><label for="Firstname" onmouseover="GFG_Fun()">FIrst Name</label>
+                        <td colspan="3"><input type="text" placeholder="Enter First name" name="first_name">
+                    </tr>
+                    <tr>
+                        <td colspan="1"><label for="Lastname" onmouseover="GFG_Fun()">Last Name</label>
+                        <td colspan="3"><input type="text" placeholder="Enter Last name" name="last_name">
+                    </tr>
+                    <tr>
+                        <td colspan="1"><label for="email" onmouseover="GFG_Fun()">Email</label>
+                        <td colspan="3"><input type="email" placeholder="Enter Email" name="email">
+                    </tr>
+                    <tr>
+                        <td colspan="1"><label for="psw" onmouseover="GFG_Fun()">Password</label>
+                        <td colspan="3"><input type="password" placeholder="Enter Password" name="psw">
+                    </tr>
+                    <tr>
+                        <td colspan="1"><label for="psw-repeat" onmouseover="GFG_Fun()">Repeat Password</label>
+                        <td colspan="3"><input type="password" placeholder="Repeat Password" name="psw-repeat">
+                    </tr>
+
+                    <tr>
+                        <td>
+                        <td>
+                            <button type="submit" name="signup" value="signup" class="signupbtn" onmouseover="GFG_Fun()">Sign Up</button>
+                        <td>
+                            <button type="submit" name="Cancel" value="Cancel" class="cancelbtn" onmouseover="GFG_Fun()">Cancel</button>
+                        <td>
+                    </tr>
+                </table>
+
+            </form>
+
+
+        </div>
+    </div>
+</div>
+<script src="{{ url_for('static',filename='js/textToSpeech.js')}}"></script>
+{% endblock %}

@@ -1,0 +1,11 @@
+.walkthrough_main{
+    /*margin-top: -20px;*/
+    height: 100%;
+}
+
+.gif{
+    width: 800px;
+    height: 400px;
+    margin: 15px;
+    border-radius: 50px;
+}

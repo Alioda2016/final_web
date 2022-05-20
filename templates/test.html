@@ -1,0 +1,47 @@
+<!-- <html>
+<script type="text/javascript">
+function play() {
+    var audio = new Audio('static/temp/2.wav');
+    audio.play();
+  }
+</script>
+<button onclick="play()">Play Audio</button>
+</html> -->
+
+<!-- <html>
+    <script type="text/javascript">
+        function playSelection(aud,start, duration) {
+            var audio = aud;
+            var end_float = parseFloat(start) + parseFloat(duration);
+            var end = end_float.toFixed(5);
+            audio.pause();
+            audio.currentTime = start;
+            audio.play();
+            $(audio).on('timeupdate.clip', function() {
+                if (audio.currentTime >= end) {
+                    audio.pause();
+                    audio.currentTime = end - 0.01;
+                    $(audio).off('timeupdate.clip');
+                }
+            });
+        }
+
+    </script>
+    <button onclick="play('temp/2.wav',20,50)">Play Audio</button>
+</html> -->
+<html>
+    <script type="text/javascript">
+          function settime(){
+        var audio= new Audio('static/temp/2.wav');
+        audio.currentTime=40;
+        audio.play();
+        console.log(audio.currentTime);
+        setInterval(function(){
+		if(audio.currentTime>50){
+			audio.pause();
+				}
+			},1000);
+		}  
+    </script>
+    <button onclick="settime()">Play Audio</button>
+</html>

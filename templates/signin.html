@@ -1,0 +1,77 @@
+{% extends 'base.html' %}
+
+{% block head %}
+<title>Task Master</title>
+<link rel="stylesheet" href="{{ url_for('static', filename='styles/signin.css') }}">
+{% endblock %}
+
+{% block body %}
+
+<div class="header">
+    <a href="/" class="logo" onmouseover="GFG_Fun()">Task Master</a>
+    <div class="header-right">
+        <a href="/" onmouseover="GFG_Fun()">Home</a>
+        <a class="active" href="/signin" onmouseover="GFG_Fun()">Login</a>
+        <a href="/signup" onmouseover="GFG_Fun()">Register</a>
+        <a onmouseover="GFG_Fun()">Auto Reader</a>
+        <label class="switch">
+            <input type="checkbox" id="auto">
+            <span class="slider round"></span>
+        </label>
+    </div>
+</div>
+
+<!-- oooooooooooooooooooooooooooooooooooooooooooooooooo -->
+
+<div class="sign_main">
+    <div class="sign_logo">
+        <img src="{{user_image}}" width="100">
+        <br>
+        <br>
+        <br>
+    </div>
+
+    <div class="pers_info">
+        <center><img src="{{user_image}}"></center>
+        <div class="signin_form">
+            {% if error %}
+            <p class="error" onmouseover="GFG_Fun()"><strong>Error</strong>: {{error}}</p>
+            {% endif %}
+            <form action="{{url_for('insert_signin') }}" method="post">
+
+                <table cellspacing="0" cellpadding="0">
+                    <tr>
+                        <td colspan="3"><input type="text" required placeholder="Enter Email" name="email">
+                    </tr>
+                    <tr>
+                        <td colspan="3"><input type="password" required placeholder="Enter Password" name="psw">
+                    </tr>
+                    <tr style="text-align: center;">
+
+                        <td>
+                        <td>
+                            <button type="submit" name="SignIn" value="SignIn" class="signupbtn" onmouseover="GFG_Fun()">Sign in</button>
+
+                        <td>
+                            <button type="submit" name="Cancel" value="Cancel" class="cancelbtn" onmouseover="GFG_Fun()">Cancel</button>
+                        <td>
+                    </tr>
+                    <tr>
+                    <tr>
+                        <td colspan="4">
+                            <center><p><a href="{{url_for('forget_password') }}" style="color:dodgerblue" onmouseover="GFG_Fun()">Do you Forget
+                                your password?</a>.</p></center>
+                    </tr>
+                </table>
+
+            </form>
+
+
+        </div>
+    </div>
+
+
+</div>
+
+<script src="{{ url_for('static',filename='js/textToSpeech.js')}}"></script>
+{% endblock %}

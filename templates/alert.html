@@ -1,0 +1,80 @@
+{% extends 'base.html' %}
+
+{% block head %}
+    <title>Task Master</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles/alert.css') }}">
+{% endblock %}
+
+{% block body %}
+
+    <div class="header">
+        <a href="/" class="logo" onmouseover="GFG_Fun()">Task Master</a>
+        <div class="header-right">
+            <a href="/" onmouseover="GFG_Fun()">Home</a>
+            <a href="/signin" onmouseover="GFG_Fun()">Login</a>
+            <a href="/signup" onmouseover="GFG_Fun()">Register</a>
+            <a>Auto Reader</a>
+            <label class="switch">
+                <input type="checkbox">
+                <span class="slider round"></span>
+            </label>
+            
+        </div>
+    </div>
+    <!-- oooooooooooooooooooooooooooooooooooooooooooooooooo -->
+    <div class="sign_main">
+        <div class="sign_logo">
+            <img src="{{ user_image }}" width="100">
+        </div>
+
+        <div class="pers_info">
+            <center><img src="{{ user_image }}" height="250"></center>
+            <div class="signin_form">
+                <form action="{{ url_for('verfication') }}" method="post">
+                    {% if error %}
+                        <p onmouseover="GFG_Fun()"><strong>Error</strong>: {{ error }}</p>
+                    {% endif %}
+                    <table cellspacing="0" cellpadding="0">
+
+
+                        <tr>
+                            <td colspan="1"><label for="Email" onmouseover="GFG_Fun()">Email </label>
+
+                            <td colspan="3"><input type="text" placeholder="emial" name="email" value="{{ email }}"
+                                                   readonly>
+                        </tr>
+
+                        <tr>
+                            <td colspan="1"><label for="OTP" onmouseover="GFG_Fun()">OTP Verification </label>
+                            <td colspan="3"><input type="text" placeholder="Enter OTP Verification" name="OTP">
+                        </tr>
+                        <tr>
+                            <td colspan="1"><label for="psw" onmouseover="GFG_Fun()">New Password</label>
+                            <td colspan="3"><input type="password" placeholder="Enter Password" name="psw">
+                        </tr>
+                        <tr>
+                            <td colspan="1"><label for="psw" onmouseover="GFG_Fun()">Repeat Password</label>
+                            <td colspan="3"><input type="password" placeholder="Enter repeat Password" name="repsw">
+                        </tr>
+
+                        <tr>
+                            <td>
+                            <td>
+                                <button type="submit" value="update" name="update" class="signupbtn" onmouseover="GFG_Fun()">Update</button>
+                            <td>
+                                <button type="submit" value="Cancel" name="Cancel" class="cancelbtn" onmouseover="GFG_Fun()">Cancel</button>
+                            <td>
+                        </tr>
+                        <tr>
+
+                    </table>
+
+                </form>
+
+
+            </div>
+        </div>
+
+
+    </div>
+{% endblock %}

@@ -1,0 +1,165 @@
+{% extends 'inbase.html' %}
+
+{% block head %}
+    <title>Update Information page</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles/update.css') }}">
+    <script>
+        function myFunction() {
+            document.getElementById("myDropdown").classList.toggle("show");
+        }
+
+        // Close the dropdown menu if the user clicks outside of it
+        window.onclick = function (event) {
+            if (!event.target.matches('.dropbtn')) {
+                var dropdowns = document.getElementsByClassName("dropdown-content");
+                var i;
+                for (i = 0; i < dropdowns.length; i++) {
+                    var openDropdown = dropdowns[i];
+                    if (openDropdown.classList.contains('show')) {
+                        openDropdown.classList.remove('show');
+                    }
+                }
+            }
+        }
+    </script>
+{% endblock %}
+
+{% block body %}
+
+<!-- oooooooooooooooooooooooooooooooooooooooooooooooooo -->
+
+<div class="sign_main">
+    <div class="sign_logo">
+        <img src="{{user_image}}" width="100">
+
+        <br>
+        <br>
+        <br>
+        <div class="setting">
+            <div class="img_setting">
+                <img src="{{settings_image}}" width="15px"/>
+            </div>
+            <div class="link_setting">
+                <!--   <a href="#" >Setting</a> -->
+                <div class="dropdown">
+                    <button onclick="myFunction()" class="dropbtn" onmouseover="GFG_Fun()">Settings</button>
+                    <div id="myDropdown" class="dropdown-content">
+                        <div class="menu">
+                            <img src="{{ url_for('static',filename='images/update_info_ico.png')}}" width="30px"/>
+                            <a href="/updateinfo"  onmouseover="GFG_Fun()">Update Your info</a>
+                        </div>
+                        <div class="clear">
+                        </div>
+                        <div class="menu">
+                            <img src="{{ url_for('static',filename='images/microphone.png')}}" width="30px" />
+                            <a onclick="checkMicPermissions()" onmouseover="GFG_Fun()">Microphone Access</a>
+                        </div>
+                        
+                        <div class="clear">
+                        </div>
+                        <div class="menu">
+                            <img src="{{ url_for('static',filename='images/synonyms_icon.png')}}" width="30px"/>
+                            <a href="/synonyms" onmouseover="GFG_Fun()">Synonyms</a>
+                        </div>
+                        <div class="clear">
+                        </div>
+                        <div class="menu">
+                            <img src="{{ url_for('static',filename='images/font_size.png')}}" width="30px"/>
+                            <a href="/font_size" onmouseover="GFG_Fun()">Font-Size</a>
+                        </div>
+                         <div class="clear">
+                        </div>
+
+
+                        <div class="menu">
+                            <img src="{{ url_for('static',filename='images/video_icon.png')}}" width="30px"/>
+                            <a href="/display_walkthrough" onmouseover="GFG_Fun()">Walkthrough Video</a>
+                        </div>
+                        <div class="clear">
+                        </div>
+                        <div class="menu">
+                            <img src="{{ url_for('static',filename='images/over_al_performancel.png')}}" width="30px"/>
+                            <a href="{{ url_for('plotgraph') }}" onmouseover="GFG_Fun()">Overall performance</a>
+                        </div>
+                        <div class="clear">
+                        </div>
+
+                        <div class="menu">
+                            <img src="{{ url_for('static',filename='images/developer_contact.png')}}" width="30px"/>
+                            <a href="/developer_contact" onmouseover="GFG_Fun()">Developer Contact</a>
+                        </div>
+                        <div class="clear">
+                        </div>
+                        <div class="menu">
+                            <img src="{{ url_for('static',filename='images/sign_out_ico.png')}}" width="30px"/>
+                            <a href="/signout" onmouseover="GFG_Fun()">Logout</a>
+                        </div>
+                        <div class="clear">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="clear"></div>
+        </div>
+    </div>
+
+    <div class="pers_info">
+            <br>
+
+            <h1 onmouseover="GFG_Fun()"> Update User Information</h1>
+
+
+            <hr color="#937ea6">
+
+            <div class="signup_form">
+                {% if error %}
+                    <p onmouseover="GFG_Fun()"><strong>Error</strong>: {{ error }}</p>
+                {% endif %}
+                <form action="{{ url_for('updateinfo') }}" method="post">
+
+                    <table cellspacing="0" cellpadding="0">
+                        <tr>
+                            <td colspan="1"><label for="First-name" onmouseover="GFG_Fun()">First Name</label>
+                            <td colspan="3"><input type="text" required placeholder="Enter First name"
+                                                   name="first_name">
+                        </tr>
+                        <tr>
+                            <td colspan="1"><label for="Last-name" onmouseover="GFG_Fun()">Last Name</label>
+                            <td colspan="3"><input type="text" required placeholder="Enter Last name" name="last_name">
+                        </tr>
+                        <tr>
+                            <td colspan="1"><label for="email" onmouseover="GFG_Fun()">Email</label>
+                            <td colspan="3"><input type="text" placeholder="Email" name="email"
+                                                   value="{{ session['email'] }}" readonly>
+                        </tr>
+                        <tr>
+                            <td colspan="1"><label for="psw" onmouseover="GFG_Fun()">Password</label>
+                            <td colspan="3"><input required type="password" placeholder="Enter Password" name="psw">
+                        </tr>
+                        <tr>
+                            <td colspan="1"><label for="psw-repeat" onmouseover="GFG_Fun()">Repeat Password</label>
+                            <td colspan="3"><input required type="password" placeholder="Repeat Password"
+                                                   name="psw-repeat">
+                        </tr>
+                        <tr>
+                            <td>
+                            <td>
+                                <button type="submit" name="update" value="update" class="signupbtn" onmouseover="GFG_Fun()">Update</button>
+                            <td>
+                                <button type="submit" name="Cancel" value="Cancel" class="cancelbtn" onmouseover="GFG_Fun()">Cancel</button>
+                            <td>
+                            <td>
+
+                            </td>
+                        </tr>
+                    </table>
+                </form>
+                <center><p><a href="/deleteAcount" style="color:dodgerblue" name="remove" value="remove" onmouseover="GFG_Fun()">Delete Account</a>.</p></center>
+                <!-- <a href="/deleteAcount"
+                   style="width: auto; margin-right: 7rem; float: right"
+                   name="remove" value="remove" onmouseover="GFG_Fun()">Delete Account</a> -->
+            </div>
+        </div>
+    </div>
+
+{% endblock %}
